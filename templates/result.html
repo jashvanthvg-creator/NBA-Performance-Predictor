@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="result-page">
+
+
+    <!-- BACKGROUND -->
+
+    <div class="page-background"></div>
+
+    <div class="background-dark"></div>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🏀
+            </div>
+
+            <span>
+                NBA Performance Predictor
+            </span>
+
+        </div>
+
+
+        <a href="{{ url_for('home') }}"
+           class="nav-home">
+
+            🏠 Home
+
+        </a>
+
+    </header>
+
+
+    <!-- RESULT -->
+
+    <main class="result-container">
+
+
+        <a href="{{ url_for('input_page') }}"
+           class="back-button">
+
+            ← Back
+
+        </a>
+
+
+        {% if result == "HIGH SCORER" %}
+
+
+        <!-- HIGH SCORER -->
+
+        <div class="result-card high-scorer">
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <h1>
+                    High Scorer
+                </h1>
+
+                <p>
+                    This player is predicted to be a
+                    <strong>High Scorer!</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- NOT HIGH SCORER -->
+
+        <div class="result-card not-high-scorer">
+
+            <div class="result-icon">
+                🏀
+            </div>
+
+            <div>
+
+                <h1>
+                    Not a High Scorer
+                </h1>
+
+                <p>
+                    This player is predicted as
+                    <strong>Not a High Scorer.</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% endif %}
+
+
+        <!-- INPUT VALUES -->
+
+        <div class="values-card">
+
+            <h2>
+                Your Input Values
+            </h2>
+
+
+            <div class="values-grid">
+
+                {% for feature, value in input_data.items() %}
+
+                <div class="value-item">
+
+                    <span>
+                        {{ feature }}
+                    </span>
+
+                    <strong>
+                        {{ value }}
+                    </strong>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- CONFIDENCE -->
+
+        <div class="confidence-card">
+
+            <div class="confidence-heading">
+
+                <span>
+                    Model Confidence
+                </span>
+
+                <strong>
+                    {{ confidence }}%
+                </strong>
+
+            </div>
+
+
+            <div class="confidence-bar">
+
+                <div
+                    class="confidence-progress"
+                    style="width: {{ confidence }}%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AGAIN BUTTON -->
+
+        <a
+            href="{{ url_for('input_page') }}"
+            class="main-button again-button"
+        >
+
+            <span>🔄</span>
+
+            Analyze Another Performance
+
+            <span>→</span>
+
+        </a>
+
+
+    </main>
+
+
+    <!-- SOUND -->
+
+    <audio id="basketballSound"
+           preload="auto">
+
+        <source
+            src="{{ url_for('static', filename='basketball-tap.mp3') }}"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <script>
+
+        const againButton =
+            document.querySelector(".again-button");
+
+        const sound =
+            document.getElementById("basketballSound");
+
+
+        againButton.addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            const destination = this.href;
+
+            sound.currentTime = 0;
+
+            sound.play().catch(() => {});
+
+
+            setTimeout(() => {
+
+                window.location.href = destination;
+
+            }, 280);
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

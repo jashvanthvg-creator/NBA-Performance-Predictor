@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Player Performance Details</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="input-page">
+
+
+    <!-- BACKGROUND -->
+    <div class="page-background"></div>
+
+    <div class="background-dark"></div>
+
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🏀
+            </div>
+
+            <span>
+                NBA Performance Predictor
+            </span>
+
+        </div>
+
+
+        <a href="{{ url_for('home') }}"
+           class="nav-home">
+
+            🏠 Home
+
+        </a>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <main class="input-container">
+
+
+        <a href="{{ url_for('home') }}"
+           class="back-button">
+
+            ← Back
+
+        </a>
+
+
+        <!-- TITLE -->
+
+        <div class="page-title">
+
+            <div class="title-ball">
+                🏀
+            </div>
+
+            <div>
+
+                <h1>
+                    Enter Player Performance Details
+                </h1>
+
+                <p>
+                    Provide the values for the 10 performance factors below
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+            id="predictionForm"
+            action="{{ url_for('predict') }}"
+            method="POST"
+            class="input-card"
+        >
+
+
+            <!-- LEFT COLUMN -->
+
+            <div class="input-column">
+
+
+                <!-- 1 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>⏱</span>
+                        1. Minutes Played
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Minutes Played"
+                        step="any"
+                        min="0"
+                        placeholder="Enter minutes played"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 2 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>🏀</span>
+                        2. Field Goals Made
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Field Goals Made"
+                        step="any"
+                        min="0"
+                        placeholder="Enter field goals made"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 3 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>🎯</span>
+                        3. Free Throws Made
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Free Throws Made"
+                        step="any"
+                        min="0"
+                        placeholder="Enter free throws made"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 4 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>🏀</span>
+                        4. Field Goals Attempted
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Field Goals Attempted"
+                        step="any"
+                        min="0"
+                        placeholder="Enter field goals attempted"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 5 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>↩</span>
+                        5. Turnovers
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Turnovers"
+                        step="any"
+                        min="0"
+                        placeholder="Enter turnovers"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div class="input-column right-column">
+
+
+                <!-- 6 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>🏀</span>
+                        6. Total Rebounds
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Total Rebounds"
+                        step="any"
+                        min="0"
+                        placeholder="Enter total rebounds"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 7 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>⚡</span>
+                        7. Steals
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Steals"
+                        step="any"
+                        min="0"
+                        placeholder="Enter steals"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 8 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>👥</span>
+                        8. Assists
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Assists"
+                        step="any"
+                        min="0"
+                        placeholder="Enter assists"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 9 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>🏀</span>
+                        9. Three-Point Field Goals Made
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Three-Point Field Goals Made"
+                        step="any"
+                        min="0"
+                        placeholder="Enter three-point field goals made"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 10 -->
+
+                <div class="input-group">
+
+                    <label>
+                        <span>🛡</span>
+                        10. Blocks
+                    </label>
+
+                    <input
+                        type="number"
+                        name="Blocks"
+                        step="any"
+                        min="0"
+                        placeholder="Enter blocks"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <div class="predict-container">
+
+                <button
+                    type="submit"
+                    class="main-button predict-button"
+                >
+
+                    <span>🏀</span>
+
+                    Predict the Performance
+
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </main>
+
+
+    <!-- SOUND -->
+
+    <audio id="basketballSound"
+           preload="auto">
+
+        <source
+            src="{{ url_for('static', filename='basketball-tap.mp3') }}"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <script>
+
+        const form =
+            document.getElementById("predictionForm");
+
+        const sound =
+            document.getElementById("basketballSound");
+
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            sound.currentTime = 0;
+
+            sound.play().catch(() => {});
+
+
+            setTimeout(() => {
+
+                form.submit();
+
+            }, 280);
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
